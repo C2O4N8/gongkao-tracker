@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>考公做题记录器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部标题 -->
+        <header class="header">
+            <h1>📚 考公做题记录器</h1>
+            <p class="subtitle">记录每一笔，上岸更近一步</p>
+        </header>
+
+        <!-- 导航标签 -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="single">单题录入</button>
+            <button class="tab-btn" data-tab="full">套题录入</button>
+            <button class="tab-btn" data-tab="summary">汇总</button>
+            <button class="tab-btn" data-tab="history">历史</button>
+        </nav>
+
+        <!-- 单题录入 -->
+        <div id="single" class="tab-content active">
+            <div class="card">
+                <h2>单模块录入</h2>
+                <form id="singleForm">
+                    <div class="form-group">
+                        <label>科目</label>
+                        <select id="singleModule" required>
+                            <option value="知觉速度">知觉速度</option>
+                            <option value="政治理论">政治理论</option>
+                            <option value="常识判断">常识判断</option>
+                            <option value="言语理解">言语理解</option>
+                            <option value="数量关系">数量关系</option>
+                            <option value="判断推理">判断推理</option>
+                            <option value="资料分析">资料分析</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>正确题数</label>
+                            <input type="number" id="singleCorrect" min="0" required placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>总题数</label>
+                            <input type="number" id="singleTotal" min="1" required placeholder="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>用时（分钟）</label>
+                        <input type="number" id="singleTime" min="0" step="0.1" placeholder="可选">
+                    </div>
+                    <div class="form-group">
+                        <label>备注</label>
+                        <input type="text" id="singleNote" placeholder="可选：错题类型、心得等">
+                    </div>
+                    <button type="submit" class="btn-primary">✅ 保存记录</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 套题录入 -->
+        <div id="full" class="tab-content">
+            <div class="card">
+                <h2>整套试卷录入</h2>
+                <form id="fullForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>行测总分</label>
+                            <input type="number" id="fullScore" min="0" max="100" step="0.1" required placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>总用时（分钟）</label>
+                            <input type="number" id="fullTime" min="0" step="1" placeholder="120">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>申论总分（可选）</label>
+                        <input type="number" id="shenlunScore" min="0" max="100" step="0.1" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>备注</label>
+                        <input type="text" id="fullNote" placeholder="试卷来源、整体感受等">
+                    </div>
+                    <button type="submit" class="btn-primary">✅ 保存套题</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 汇总 -->
+        <div id="summary" class="tab-content">
+            <div class="card">
+                <h2>📊 今日汇总</h2>
+                <div id="todaySummary" class="summary-grid">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+            <div class="card">
+                <h2>📈 各模块统计</h2>
+                <div id="moduleStats" class="stats-list">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 历史 -->
+        <div id="history" class="tab-content">
+            <div class="card">
+                <div class="history-header">
+                    <h2>📝 历史记录</h2>
+                    <button id="exportBtn" class="btn-secondary">📤 导出数据</button>
+                </div>
+                <div id="historyList" class="history-list">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部操作 -->
+        <footer class="footer">
+            <button id="clearBtn" class="btn-danger">🗑️ 清空所有数据</button>
+            <input type="file" id="importBtn" accept=".json" style="display:none">
+            <button onclick="document.getElementById('importBtn').click()" class="btn-secondary">📥 导入数据</button>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
